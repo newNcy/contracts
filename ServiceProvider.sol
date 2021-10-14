@@ -61,23 +61,56 @@ contract ServiceProvider is Authority {
     using MapOp for CleanableMap;
     
     mapping (uint256 => Service)  serviceData;
+    address public priceToken;
     
     function setServicePrice(uint256 serviceId, uint256 price) public onlyAdmin {
         serviceData[serviceId].price = price;
+    }
+    
+    function setPriceToken(address token) public onlyAdmin {
+        priceToken = token;
+    }
+    
+    function deleteService(uint256 serviceId) public onlyAdmin {
+        serviceData[serviceId].userPay.clear();
+        delete serviceData[serviceId];
+    }
+    
+    function getServiceUserPay(uint256 serviceId, address user) public view returns (uint256) {
+        return serviceData[serviceId].userPay.get(user);
+    }
+    
+    function setServiceUserPay(uint256 serviceId, address user, uint256 value) public onlyAdmin {
+        serviceData[serviceId].userPay.set(user, value);
     }
     
     function getServicePrice(uint256 serviceId) public view returns (uint256) {
         return serviceData[serviceId].price;
     }
     
-    function buy(uint serviceId) public returns (bool) {
-        
+    
+    
+    function buy(uint serviceId) public payable {
+        if (isAdmin[msg.sender]) {
+            revert();
+        }
+        require(msg.value == serviceData[serviceId].price, "wrong value");
+        payable(owner).transfer(payable(address(this)).balance);
+        serviceData[serviceId].userPay.set(msg.sender, serviceData[serviceId].price);
     }
     
-    function canUse(address user, uint serviceId) public view returns (bool) {
+    function withdraw() public onlyOwner {
+        payable(owner).transfer(payable(address(this)).balance);
+    }
+    
+    function canUse(address user, uint256 serviceId) public view returns (bool) {
         if (isAdmin[user]) {
             return true;
         }
         return serviceData[serviceId].userPay.get(user) >= serviceData[serviceId].price;
+    }
+    
+    receive () external  payable {
+    
     }
 }

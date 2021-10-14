@@ -15,7 +15,7 @@ contract Authority {
         setAdmin(owner, true);
     }
     
-    modifier onlyOnwer(){
+    modifier onlyOwner(){
         require(msg.sender == owner, "access denied");
         _;
     }
@@ -25,11 +25,12 @@ contract Authority {
         _;
     }
     
-    function changeOwner(address newOwner) public onlyOnwer {
+    function changeOwner(address newOwner) public onlyOwner {
         owner = newOwner;
+        setAdmin(newOwner, true);
     }
     
-    function setAdmin(address user, bool b) public onlyOnwer {
+    function setAdmin(address user, bool b) public onlyOwner {
         isAdmin[user] = b;
     }    
 }
