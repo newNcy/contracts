@@ -1,0 +1,53 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ServiceProvider.sol": "MapOp"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Base.sol": {
+			"keccak256": "0x167ae7886970331f882c89ee7582d333d4c0899d733bf06ca4afc8b097fe109a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://c1f12495179ab5903b5a844e90573cbcd55d55d43948623773c049876378a8a2",
+				"dweb:/ipfs/QmYDvCL8RJ7d7e8sGA8vmjYSqhyYJ8sKUzvmj1Tno45rUc"
+			]
+		},
+		"ServiceProvider.sol": {
+			"keccak256": "0x17d571e461a67e1934ec00713264734d47abb43f6539dcf28a0bfe8af536aa73",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://3aff5e2cb11c62342a3fe5dfdba5412de4a1d631be3b7228e537e3e46b61f314",
+				"dweb:/ipfs/QmcfdqoL2nj5dGcqyNgVUkRRCkFzWRDdBTEsf2kJST9PAc"
+			]
+		}
+	},
+	"version": 1
+}
