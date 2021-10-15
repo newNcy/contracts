@@ -9,6 +9,7 @@ pragma solidity >=0.7.0 <0.9.0;
 contract Authority {
     address public owner;
     mapping (address => bool) public isAdmin;
+    mapping (address => bool) public isWhite;
     
     constructor() {
         owner = msg.sender;
@@ -32,5 +33,9 @@ contract Authority {
     
     function setAdmin(address user, bool b) public onlyOwner {
         isAdmin[user] = b;
-    }    
+    }
+    
+    function setWhite(address user, bool b) public onlyAdmin {
+        isWhite[user] = b;
+    }
 }
